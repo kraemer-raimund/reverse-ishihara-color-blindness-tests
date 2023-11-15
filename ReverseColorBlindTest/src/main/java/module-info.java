@@ -3,6 +3,6 @@ module dev.raimundkraemer.reversecolorblindtest {
     requires javafx.fxml;
 
 
-    opens dev.raimundkraemer.reversecolorblindtest to javafx.fxml;
-    exports dev.raimundkraemer.reversecolorblindtest;
+    opens dev.raimundkraemer.colorblind to javafx.fxml;
+    exports dev.raimundkraemer.colorblind;
 }
