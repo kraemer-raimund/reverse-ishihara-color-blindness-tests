@@ -4,5 +4,5 @@
 <?import javafx.scene.layout.Pane?>
 <Pane xmlns:fx="http://javafx.com/fxml"
       fx:controller="dev.raimundkraemer.colorblind.ColorblindController">
-    <Canvas fx:id="canvas" width="800" height="600" />
+    <Canvas fx:id="canvas" width="1200" height="800" />
 </Pane>
