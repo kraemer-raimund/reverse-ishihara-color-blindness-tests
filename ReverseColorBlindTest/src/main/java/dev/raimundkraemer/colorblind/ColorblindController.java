@@ -1,5 +1,7 @@
 package dev.raimundkraemer.colorblind;
 
+import dev.raimundkraemer.colorblind.graphics.Renderer;
+import dev.raimundkraemer.colorblind.graphics.ReverseColorblindImage;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 
@@ -9,6 +11,9 @@ public class ColorblindController {
     Canvas canvas;
 
     public void initialize() {
-        canvas.getGraphicsContext2D().fillOval(0, 0, 100, 100);
+        final var image = new ReverseColorblindImage();
+
+        Renderer renderer = new CanvasRenderer(canvas);
+        renderer.render(image);
     }
 }
