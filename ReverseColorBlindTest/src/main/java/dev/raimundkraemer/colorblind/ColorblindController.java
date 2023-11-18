@@ -11,7 +11,7 @@ public class ColorblindController {
     Canvas canvas;
 
     public void initialize() {
-        final var image = new ReverseColorblindImage();
+        final var image = ReverseColorblindImage.generate();
 
         Renderer renderer = new CanvasRenderer(canvas);
         renderer.render(image);
