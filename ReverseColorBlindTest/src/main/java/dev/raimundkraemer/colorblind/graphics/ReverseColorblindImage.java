@@ -1,8 +1,14 @@
 package dev.raimundkraemer.colorblind.graphics;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.IntStream;
 
 public class ReverseColorblindImage {
+
+    private static final int MIN_RADIUS = 5;
+    private static final int MAX_RADIUS = 15;
 
     private final Iterable<Circle> circles;
 
@@ -14,14 +20,24 @@ public class ReverseColorblindImage {
         return circles;
     }
 
-    public static ReverseColorblindImage generate() {
-        return new ReverseColorblindImage(
-                List.of(
-                        new Circle(400, 250, 20, new Color(0.2, 0.3, 0.5)),
-                        new Circle(200, 100, 20, new Color(0.6, 0.6, 0.1)),
-                        new Circle(100, 200, 20, new Color(0.8, 0.7, 0.3)),
-                        new Circle(600, 400, 20, new Color(0.0, 0.3, 0.3))
-                )
-        );
+    public static ReverseColorblindImage generate(int width, int height, int circlesToGenerate) {
+        final List<Circle> circles = new ArrayList<>();
+
+        IntStream.range(0, circlesToGenerate)
+                .forEach(i -> addRandomCircle(width, height, circles));
+
+        return new ReverseColorblindImage(circles);
+    }
+
+    private static void addRandomCircle(int imageWidth, int imageHeight, List<Circle> circles) {
+        Circle randomCircle = generateRandomCircle(imageWidth, imageHeight, Color.magenta());
+        circles.add(randomCircle);
+    }
+
+    private static Circle generateRandomCircle(int imageWidth, int imageHeight, Color color) {
+        final double posX = ThreadLocalRandom.current().nextDouble(0, imageWidth);
+        final double posY = ThreadLocalRandom.current().nextDouble(0, imageHeight);
+        final double radius = ThreadLocalRandom.current().nextDouble(MIN_RADIUS, MAX_RADIUS + 1);
+        return new Circle(posX, posY, radius, color);
     }
 }

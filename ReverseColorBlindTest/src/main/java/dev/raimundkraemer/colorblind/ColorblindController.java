@@ -11,7 +11,12 @@ public class ColorblindController {
     Canvas canvas;
 
     public void initialize() {
-        final var image = ReverseColorblindImage.generate();
+        final var circlesToGenerate = 4000;
+        final var image = ReverseColorblindImage.generate(
+                (int)canvas.getWidth(),
+                (int)canvas.getHeight(),
+                circlesToGenerate
+        );
 
         Renderer renderer = new CanvasRenderer(canvas);
         renderer.render(image);
