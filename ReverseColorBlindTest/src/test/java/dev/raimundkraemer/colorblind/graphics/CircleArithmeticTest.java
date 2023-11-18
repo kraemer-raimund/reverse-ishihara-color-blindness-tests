@@ -31,4 +31,20 @@ class CircleArithmeticTest {
 
         assertFalse(a.overlaps(b));
     }
+
+    @Test
+    void equallySizedCirclesWithDistanceEqualToTheirRadii_doIntersect() {
+        Circle a = new Circle(-10, 0, 20);
+        Circle b = new Circle(10, 0, 20);
+
+        assertTrue(a.intersects(b));
+    }
+
+    @Test
+    void aSmallCircleFullyEnclosedInABigCircle_doesNotIntersect() {
+        Circle a = new Circle(0, 0, 2);
+        Circle b = new Circle(0, 0, 20);
+
+        assertFalse(a.intersects(b));
+    }
 }
